@@ -1,0 +1,11 @@
+json_credential = "/Users/yolandalopezsolis/projects/gcp-terraform/gcp/.credentials/wwcode-terraform-admin-44f7f3980bb1.json"
+project_name    = "wwcode-terraform-admin"
+location                 = "us-central1-b"
+service_account_id       = "gke-node-pool"
+gke_cluster_name         = "dev-fest-cdmx-2022-dev"
+initial_node_count       = 1
+remove_default_node_pool = true
+node_pool_count          = 1
+node_config_preemptible  = true
+node_config_machine_type = "e2-medium"
+node_config_disk_size_gb = 10
