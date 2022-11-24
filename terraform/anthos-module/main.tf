@@ -7,7 +7,6 @@ terraform {
   }
 }
 provider "google-beta" {
-  project = var.project_name
-  region  = var.region
+  project     = var.project_name
   credentials = file(var.json_credential)
 }
