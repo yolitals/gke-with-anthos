@@ -22,16 +22,18 @@ spec:
         - containerPort: 3000
         env:
         - name: REACT_APP_API_URL
-          value: 34.67.156.251/api
+          value: http://34.67.156.251/api
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: todo-web-app
   namespace: development
+  
 spec:
   type: LoadBalancer
   ports:
-  - port: 3000
+  - port: 80
+    targetPort: 3000
   selector:
     app: todo-web-app
