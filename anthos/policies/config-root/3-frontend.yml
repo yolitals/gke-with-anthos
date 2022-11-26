@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-web-app
+  namespace: development
+spec:
+  selector:
+    matchLabels:
+      app: todo-web-app
+  # remove replica if using gitops
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: todo-web-app
+    spec:
+      containers:
+      - name: todo-web-app
+        image: yolix/todo-web-app:v1
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REACT_APP_API_URL
+          value: 34.67.156.251/api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-web-app
+  namespace: development
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3000
+  selector:
+    app: todo-web-app
