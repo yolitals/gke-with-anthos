@@ -16,12 +16,6 @@ resource "google_gke_hub_membership" "membership" {
   }
 }
 
-resource "google_gke_hub_feature" "configmanagement_acm_feature" {
-  project  = var.project_name
-  name     = "configmanagement"
-  location = "global"
-  provider = google-beta
-}
 
 resource "google_gke_hub_feature_membership" "feature_member" {
   project    = var.project_name
@@ -30,7 +24,7 @@ resource "google_gke_hub_feature_membership" "feature_member" {
   feature    = "configmanagement"
   membership = google_gke_hub_membership.membership.membership_id
   configmanagement {
-    version = "1.8.0"
+    version = "1.13.1"
     config_sync {
       source_format = "unstructured"
       git {
@@ -41,7 +35,7 @@ resource "google_gke_hub_feature_membership" "feature_member" {
       }
     }
   }
-  depends_on = [
-    google_gke_hub_feature.configmanagement_acm_feature
-  ]
+  # depends_on = [
+  #   google_gke_hub_feature.configmanagement_acm_feature
+  # ]
 }
