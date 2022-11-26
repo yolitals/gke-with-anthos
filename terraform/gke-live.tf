@@ -12,10 +12,21 @@ module "name" {
   json_credential          = "/Users/yolandalopezsolis/projects/gcp-terraform/gcp/.credentials/wwcode-terraform-admin-44f7f3980bb1.json"
   project_name             = "wwcode-terraform-admin"
 }
-module "anthos" {
+module "anthos_prod" {
   source           = "./anthos-module"
   region           = "us-central1-b"
   gke_cluster_name = "dev-fest-cdmx-2022-prod"
+  sync_repo        = "https://github.com/yolitals/gke-with-anthos.git"
+  sync_branch      = "master"
+  policy_dir       = "anthos/policies/config-demo"
+  json_credential  = "/Users/yolandalopezsolis/projects/gcp-terraform/gcp/.credentials/wwcode-terraform-admin-44f7f3980bb1.json"
+  project_name     = "wwcode-terraform-admin"
+
+}
+module "anthos_dev" {
+  source           = "./anthos-module"
+  region           = "us-central1-b"
+  gke_cluster_name = "dev-fest-cdmx-2022-dev"
   sync_repo        = "https://github.com/yolitals/gke-with-anthos.git"
   sync_branch      = "master"
   policy_dir       = "anthos/policies/config-demo"
